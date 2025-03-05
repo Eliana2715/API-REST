@@ -110,11 +110,6 @@ router.post('/:id',  [ //servicio de actualizar
         return res.status(400).send('Exist serial ');
         }
 
-        const urlExist = await Media.findOne({ url_pelicula: req.body.url_pelicula });
-        if (urlExist){
-            return res.status(400).send('Exist url_pelicula');
-        }
-
         let media = await Media.findOne({ serial: req.body.serial });
         if (!media) {
             return res.status(400).send('Media not exist');
