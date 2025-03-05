@@ -10,7 +10,7 @@ router.post('/',  [ //servicio de crear
     check('sinopsis', 'invalid.sinopsis').not().isEmpty(),
     check('url_pelicula', 'invalid.url_pelicula').not().isEmpty(),
     check('image', 'invalid.image').not().isEmpty(),
-    check('año_estreno', 'invalid.año_estreno').not().isEmpty(),
+    check('anio_estreno', 'invalid.anio_estreno').not().isEmpty(),
     check('genero', 'invalid.genero').not().isEmpty(),
     check('director', 'invalid.director').not().isEmpty(),
     check('productora', 'invalid.productora').not().isEmpty(),
@@ -43,7 +43,7 @@ router.post('/',  [ //servicio de crear
         media.image = req.body.image;
         media.createdAt = new Date();
         media.updatedAt = new Date();
-        media.año_estreno = req.body.año_estreno;
+        media.anio_estreno = req.body.anio_estreno;
         media.genero = req.body.genero._id;
         media.director = req.body.director._id;
         media.productora = req.body.productora._id;
@@ -85,13 +85,13 @@ router.get('/', async function(req, res) { //servicio de listar
 });
 
 //UPDATE
-router.post('/:id',  [ //servicio de actualizar
+router.put('/:id',  [ //servicio de actualizar
     check('serial', 'invalid.serial').not().isEmpty(),
     check('titulo', 'invalid.titulo').not().isEmpty(),
     check('sinopsis', 'invalid.sinopsis').not().isEmpty(),
     check('url_pelicula', 'invalid.url_pelicula').not().isEmpty(),
     check('image', 'invalid.image').not().isEmpty(),
-    check('año_estreno', 'invalid.año_estreno').not().isEmpty(),
+    check('anio_estreno', 'invalid.anio_estreno').not().isEmpty(),
     check('genero', 'invalid.genero').not().isEmpty(),
     check('director', 'invalid.director').not().isEmpty(),
     check('productora', 'invalid.productora').not().isEmpty(),
@@ -121,7 +121,7 @@ router.post('/:id',  [ //servicio de actualizar
         media.url_pelicula = req.body.url_pelicula;
         media.image = req.body.image;
         media.updatedAt = new Date();
-        media.año_estreno = req.body.año_estreno;
+        media.anio_estreno = req.body.anio_estreno;
         media.genero = req.body.genero._id;
         media.director = req.body.director._id;
         media.productora = req.body.productora._id;
