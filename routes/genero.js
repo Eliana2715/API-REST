@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/',  [ //servicio de crear
+router.post('/:genero_id',  [ //servicio de crear
     check('name', 'invalid.name').not().isEmpty(),
     check('state', 'invalid.state').isIn(['Activo', 'Inactivo']),
     check('description', 'invalid.description').not().isEmpty().isLength({ min: 5, max: 500}), // la descripcoon debe de tener entre 5 y 500 caracteres
@@ -33,7 +33,7 @@ router.post('/',  [ //servicio de crear
     }
 });
 
-router.get('/', async function(req, res) { //servicio de listar
+router.get('/:genero_id', async function(req, res) { //servicio de listar
     try{
         const generos = await Genero.find(); // select * from users
         res.send(generos);
@@ -46,7 +46,7 @@ router.get('/', async function(req, res) { //servicio de listar
 });
 
 //UPDATE
-router.put('/',  [ //servicio de actualizar
+router.put('/:genero_id',  [ //servicio de actualizar
     check('name', 'invalid.name').not().isEmpty(),
     check('state', 'invalid.state').isIn(['Activo', 'Inactivo']),
     check('description', 'invalid.description').not().isEmpty().isLength({ min: 5, max: 500}), // la descripcoon debe de tener entre 5 y 500 caracteres
@@ -78,18 +78,5 @@ router.put('/',  [ //servicio de actualizar
     }
 });
 
-router.get('/:mediaId', async function (req, res) {
-    try{
-        const media = await Media.findById(req.params.mediaId);
-        if(!media){
-            return res.status(404).send('No exist Media');
-        }
-        res.send(media);
-    }catch(error) {
-        console.log(error);
-        res.status(500).send('message error');
-    }
-    
-});
 
 module.exports = router;
