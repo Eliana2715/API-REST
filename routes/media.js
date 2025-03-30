@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/',  [ //servicio de crear
+router.post('/mediaId',  [ //servicio de crear
     check('serial', 'invalid.serial').not().isEmpty(),
     check('titulo', 'invalid.titulo').not().isEmpty(),
     check('sinopsis', 'invalid.sinopsis').not().isEmpty(),
@@ -59,7 +59,7 @@ router.post('/',  [ //servicio de crear
     }
 });
 
-router.get('/', async function(req, res) { //servicio de listar
+router.get('/mediaId', async function(req, res) { //servicio de listar
     try{
         const medias = await Media.find().populate([
             {
@@ -85,7 +85,7 @@ router.get('/', async function(req, res) { //servicio de listar
 });
 
 //UPDATE
-router.put('/:id',  [ //servicio de actualizar
+router.put('/:mediaId',  [ //servicio de actualizar
     check('serial', 'invalid.serial').not().isEmpty(),
     check('titulo', 'invalid.titulo').not().isEmpty(),
     check('sinopsis', 'invalid.sinopsis').not().isEmpty(),
@@ -136,4 +136,20 @@ router.put('/:id',  [ //servicio de actualizar
         res.status(500).send('message error')
     }
 });
+
+router.get('/:mediaId', async function (req, res) {
+    try{
+        const media = await Media.findById(req.params.mediaId);
+        if(!media){
+            return res.status(404).send('No exist media');
+        }
+        res.send(media);
+    }catch(error) {
+        console.log(error);
+        res.status(500).send('mesage error');
+    }
+    
+});
+
+
 module.exports = router;

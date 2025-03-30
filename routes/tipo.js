@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/',  [ //servicio de crear
+router.post('/tipoId',  [ //servicio de crear
     check('name', 'invalid.name').not().isEmpty(),
     check('description', 'invalid.description').not().isEmpty().isLength({ min: 5, max: 500}), // la descripcoon debe de tener entre 5 y 500 caracteres
 ], async function(req, res) {
@@ -33,7 +33,7 @@ router.post('/',  [ //servicio de crear
     }
 });
 
-router.get('/', async function(req, res) { //servicio de listar
+router.get('/tipoId', async function(req, res) { //servicio de listar
     try{
         const tipos = await Tipo.find(); // select * from users
         res.send(tipos);
@@ -46,7 +46,7 @@ router.get('/', async function(req, res) { //servicio de listar
 });
 
 //UPDATE
-router.put('/:id',  [ //servicio de actualizar
+router.put('/:tipoId',  [ //servicio de actualizar
     check('name', 'invalid.name').not().isEmpty(),
     check('description', 'invalid.description').not().isEmpty().isLength({ min: 5, max: 500}), // la descripcoon debe de tener entre 5 y 500 caracteres
 ], async function(req, res) {
