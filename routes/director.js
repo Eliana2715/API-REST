@@ -73,17 +73,4 @@ router.put('/:director_id',  [ //servicio de actualizar
     }
 });
 
-router.delete('/:director_id', async (req, res) => {
-    try {
-        const director = await Director.findByIdAndDelete(req.params.director_id);
-        if (!director) {
-            return res.status(404).send('Director no encontrado');
-        }
-        res.status(200).json({ message: 'Director eliminado correctamente', data: director });
-    } catch (error) {
-        console.log(error);
-        res.status(500).send('message error');
-    }
-});
-
 module.exports = router;
