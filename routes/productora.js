@@ -63,7 +63,7 @@ router.put('/:productora_id',  [ //servicio de actualizar
             return res.status(400).json({ message: errors.array() })
         }
 
-        let productora = await Productora.findById(req.params._id);
+        let productora = await Productora.findById(req.params.productora_id);
         if (!productora) {
             return res.status(400).send('Director not exist');
         }

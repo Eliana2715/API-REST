@@ -58,7 +58,7 @@ router.put('/:genero_id',  [ //servicio de actualizar
             return res.status(400).json({ message: errors.array() })
         }
 
-        let genero = await Genero.findById(req.params._id);
+        let genero = await Genero.findById(req.params.genero_id);
         if (!genero) {
             return res.status(400).send('Genero not exist');
         }

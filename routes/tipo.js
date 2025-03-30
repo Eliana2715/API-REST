@@ -57,7 +57,7 @@ router.put('/:tipo_id',  [ //servicio de actualizar
             return res.status(400).json({ message: errors.array() })
         }
     
-        let tipo = await Tipo.findById(req.params._id);
+        let tipo = await Tipo.findById(req.params.tipo_id);
         if (!tipo) {
             return res.status(400).send('Tipo not exist');
         }
