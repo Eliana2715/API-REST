@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/productoraId',  [ //servicio de crear
+router.post('/',  [ //servicio de crear
     check('name_Producer', 'invalid.name_Producer').not().isEmpty(),
     check('state', 'invalid.state').isIn(['Activo', 'Inactivo']),
     check('slogan', 'invalid.slogan').not().isEmpty(),
@@ -37,7 +37,7 @@ router.post('/productoraId',  [ //servicio de crear
     }
 });
 
-router.get('/productoraId', async function(req, res) { //servicio de listar
+router.get('/', async function(req, res) { //servicio de listar
     try{
         const productoras = await Productora.find(); // select * from users
         res.send(productoras);
@@ -50,7 +50,7 @@ router.get('/productoraId', async function(req, res) { //servicio de listar
 });
 
 //UPDATE
-router.put('/:productoraId',  [ //servicio de actualizar
+router.put('/',  [ //servicio de actualizar
     check('name_Producer', 'invalid.name_Producer').not().isEmpty(),
     check('state', 'invalid.state').isIn(['Activo', 'Inactivo']),
     check('slogan', 'invalid.slogan').not().isEmpty(),
