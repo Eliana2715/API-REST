@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/:media_id',  [ //servicio de crear
+router.post('/',  [ //servicio de crear
     check('serial', 'invalid.serial').not().isEmpty(),
     check('titulo', 'invalid.titulo').not().isEmpty(),
     check('sinopsis', 'invalid.sinopsis').not().isEmpty(),
@@ -59,7 +59,7 @@ router.post('/:media_id',  [ //servicio de crear
     }
 });
 
-router.get('/:media_id', async function(req, res) { //servicio de listar
+router.get('/', async function(req, res) { //servicio de listar
     try{
         const medias = await Media.find().populate([
             {
@@ -85,7 +85,7 @@ router.get('/:media_id', async function(req, res) { //servicio de listar
 });
 
 //UPDATE
-router.put('/:media_id',  [ //servicio de actualizar
+router.put('/:mediaId',  [ //servicio de actualizar
     check('serial', 'invalid.serial').not().isEmpty(),
     check('titulo', 'invalid.titulo').not().isEmpty(),
     check('sinopsis', 'invalid.sinopsis').not().isEmpty(),

@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/:productora_id',  [ //servicio de crear
+router.post('/',  [ //servicio de crear
     check('name_Producer', 'invalid.name_Producer').not().isEmpty(),
     check('state', 'invalid.state').isIn(['Activo', 'Inactivo']),
     check('slogan', 'invalid.slogan').not().isEmpty(),
@@ -37,7 +37,7 @@ router.post('/:productora_id',  [ //servicio de crear
     }
 });
 
-router.get('/:productora_id', async function(req, res) { //servicio de listar
+router.get('/', async function(req, res) { //servicio de listar
     try{
         const productoras = await Productora.find(); // select * from users
         res.send(productoras);
@@ -63,7 +63,7 @@ router.put('/:productora_id',  [ //servicio de actualizar
             return res.status(400).json({ message: errors.array() })
         }
 
-        let productora = await Productora.findById(req.params.id);
+        let productora = await Productora.findById(req.params._id);
         if (!productora) {
             return res.status(400).send('Director not exist');
         }

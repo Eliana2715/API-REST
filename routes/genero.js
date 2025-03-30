@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/:genero_id',  [ //servicio de crear
+router.post('/',  [ //servicio de crear
     check('name', 'invalid.name').not().isEmpty(),
     check('state', 'invalid.state').isIn(['Activo', 'Inactivo']),
     check('description', 'invalid.description').not().isEmpty().isLength({ min: 5, max: 500}), // la descripcoon debe de tener entre 5 y 500 caracteres
@@ -33,7 +33,7 @@ router.post('/:genero_id',  [ //servicio de crear
     }
 });
 
-router.get('/:genero_id', async function(req, res) { //servicio de listar
+router.get('/', async function(req, res) { //servicio de listar
     try{
         const generos = await Genero.find(); // select * from users
         res.send(generos);
@@ -58,7 +58,7 @@ router.put('/:genero_id',  [ //servicio de actualizar
             return res.status(400).json({ message: errors.array() })
         }
 
-        let genero = await Genero.findById(req.params.id);
+        let genero = await Genero.findById(req.params._id);
         if (!genero) {
             return res.status(400).send('Genero not exist');
         }

@@ -55,7 +55,7 @@ router.put('/:director_id',  [ //servicio de actualizar
             return res.status(400).json({ message: errors.array() })
         }
 
-        let director = await Director.findById(req.params.id);
+        let director = await Director.findById(req.params._id);
         if (!director) {
             return res.status(400).send('Director not exist');
         }
