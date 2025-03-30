@@ -4,7 +4,7 @@ const { validationResult, check } = require('express-validator');
 
 const router = Router();
 
-router.post('/:director_id',  [ //servicio de crear
+router.post('/',  [ //servicio de crear
     check('name', 'invalid.name').not().isEmpty(),
     check('state', 'invalid.state').isIn(['Activo', 'Inactivo']),
 ], async function(req, res) {
@@ -32,7 +32,7 @@ router.post('/:director_id',  [ //servicio de crear
     }
 });
 
-router.get('/:director_id', async function(req, res) { //servicio de listar
+router.get('/', async function(req, res) { //servicio de listar
     try{
         const directors = await Director.find(); // select * from users
         res.send(directors);
